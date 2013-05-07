@@ -39,6 +39,7 @@ module Doorkeeper
     autoload :Expirable,  'doorkeeper/models/expirable'
     autoload :Revocable,  'doorkeeper/models/revocable'
     autoload :Accessible, 'doorkeeper/models/accessible'
+    autoload :Device,     'doorkeeper/models/device'
   end
 
   module Helpers

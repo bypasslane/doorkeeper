@@ -49,6 +49,10 @@ module Doorkeeper
         @config.instance_variable_set("@confirm_application_owner", true)
       end
 
+      def confirm_device
+        @config.instance_variable_set("@confirm_device", true)
+      end
+
       def default_scopes(*scopes)
         @config.instance_variable_set("@default_scopes", Doorkeeper::OAuth::Scopes.from_array(scopes))
       end
@@ -148,6 +152,7 @@ module Doorkeeper
              warn(I18n.translate('doorkeeper.errors.messages.credential_flow_not_configured'))
              nil
            }
+    option :confirm_device, :default => false
     option :skip_authorization, :default => lambda{|routes|}
     option :access_token_expires_in,      :default => 7200
     option :authorization_code_expires_in,:default => 600
@@ -165,6 +170,10 @@ module Doorkeeper
 
     def confirm_application_owner?
       !!@confirm_application_owner
+    end
+
+    def confirm_device?
+      !!@confirm_device
     end
 
     def default_scopes

@@ -25,6 +25,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration
 
     create_table :oauth_access_tokens do |t|
       t.integer  :resource_owner_id
+      t.integer  :device_id
       t.integer  :application_id,    :null => false
       t.string   :token,             :null => false
       t.string   :refresh_token

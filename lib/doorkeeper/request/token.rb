@@ -9,7 +9,7 @@ module Doorkeeper
       attr_accessor :pre_auth, :server
 
       def initialize(pre_auth, server)
-        @pre_auth, @server = pre_auth, server
+        @pre_auth, @server= pre_auth, server
       end
 
       def request
