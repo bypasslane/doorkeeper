@@ -15,6 +15,7 @@ module Doorkeeper
         @client = client
         @grant  = grant
         @redirect_uri = parameters[:redirect_uri]
+        @device_uuid = parameters[:device_uuid]
       end
 
       def authorize

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20120524202412) do
 
   create_table "oauth_access_grants", :force => true do |t|
     t.integer  "resource_owner_id", :null => false
+    t.string   "device_uuid"
     t.integer  "application_id",    :null => false
     t.string   "token",             :null => false
     t.integer  "expires_in",        :null => false
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120524202412) do
 
   create_table "oauth_access_tokens", :force => true do |t|
     t.integer  "resource_owner_id"
-    t.integer  "device_id"
+    t.string   "device_uuid"
     t.integer  "application_id",    :null => false
     t.string   "token",             :null => false
     t.string   "refresh_token"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120524202412) do
 
   create_table "devices", :force => true do |t|
     t.string   "name"
+    t.string   "uuid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -5,9 +5,10 @@ module Doorkeeper::OAuth
     let(:server) { mock :server, :access_token_expires_in => 2.days, :refresh_token_enabled? => false }
     let(:grant)  { FactoryGirl.create :access_grant }
     let(:client) { grant.application }
+    let(:device) { Device.create(uuid: SecureRandom.base64)}
 
     subject do
-      AuthorizationCodeRequest.new server, grant, client, :redirect_uri => client.redirect_uri
+      AuthorizationCodeRequest.new server, grant, client, redirect_uri: client.redirect_uri, device_uuid: device.uuid
     end
 
     it 'issues a new token for the client' do
@@ -19,6 +20,11 @@ module Doorkeeper::OAuth
     it "issues the token with same grant's scopes" do
       subject.authorize
       Doorkeeper::AccessToken.last.scopes.should == grant.scopes
+    end
+
+    it "issues the token with the same authorization device uuid" do
+      subject.authorize
+      Doorkeeper::AccessToken.last.device_uuid.should == grant.device_uuid
     end
 
     it 'revokes the grant' do
